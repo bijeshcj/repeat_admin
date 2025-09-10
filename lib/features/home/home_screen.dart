@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:repeat_admin/features/customers/customer_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final String userName;
@@ -13,7 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _tabs = [
-    const Center(child: Text("Customers Page", style: TextStyle(fontSize: 22))),
+    const CustomersPage(),
     const Center(child: Text("Orders Page", style: TextStyle(fontSize: 22))),
     const Center(child: Text("Profile Page", style: TextStyle(fontSize: 22))),
     const Center(child: Text("Settings Page", style: TextStyle(fontSize: 22))),
@@ -32,6 +33,18 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text("Welcome, ${widget.userName}"),
       ),
       body: _tabs[_selectedIndex],
+      // 👇 FAB only visible on Customers tab (index 0)
+      floatingActionButton: _selectedIndex == 0
+          ? FloatingActionButton(
+        onPressed: () {
+          // Action: Add customer
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("Add Customer clicked")),
+          );
+        },
+        child: const Icon(Icons.add),
+      )
+          : null,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
