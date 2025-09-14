@@ -56,12 +56,8 @@ class _CustomersPageState extends State<CustomersPage> {
             margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             child: ListTile(
-              leading: CircleAvatar(
-                radius: 26,
-                backgroundImage: customer["image"] != null
-                    ? NetworkImage(customer["image"])
-                    : const AssetImage("assets/default_user.png") as ImageProvider,
-              ),
+              leading: const CircleAvatar(radius: 30,
+                child: Icon(Icons.person),),
               title: Text(
                 customer["name"],
                 style: const TextStyle(fontWeight: FontWeight.bold),
